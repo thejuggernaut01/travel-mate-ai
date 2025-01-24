@@ -31,7 +31,7 @@ const Recommendation = () => {
     };
 
     fetchRecommendation();
-  }, [id]);
+  }, []);
 
   if (loading) return <PageSuspense />;
 
