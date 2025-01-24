@@ -6,15 +6,11 @@ export const TravelPlannerSchema: z.ZodType<TravelPlannerProps> = z.object({
     .string()
     .min(1, { message: 'Destination is required' })
     .max(255, { message: 'Destination must be less than 255 characters' }),
-  travel: z
-    .string()
-    .nullable()
-    .refine((val) => val !== null, {
-      message: 'Travel planning selection is required',
-    }),
+  travel: z.string().refine((val) => val !== null, {
+    message: 'Travel planning selection is required',
+  }),
   budget: z
     .string()
-    .nullable()
     .refine((val) => val !== null, { message: 'Budget selection is required' }),
   activities: z
     .array(z.string())
