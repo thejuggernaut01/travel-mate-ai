@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Key } from 'react';
 import { Link } from 'react-router-dom';
 
 interface Recommendation {
@@ -59,17 +60,22 @@ export default function RecommendationCard({
             <h4 className="mb-2 text-sm font-semibold">Curated by:</h4>
             <div className="flex -space-x-2 overflow-hidden">
               {curators &&
-                curators.map((curator, index) => (
-                  <Avatar key={index} className="border-2 border-background">
-                    <AvatarImage
-                      src={curator['Curator Profile Image']}
-                      alt={curator['Curator Name']}
-                    />
-                    <AvatarFallback>
-                      {curator['Curator Name'].charAt(0)}
-                    </AvatarFallback>
-                  </Avatar>
-                ))}
+                curators.map(
+                  (
+                    curator: { [x: string]: string },
+                    index: Key | null | undefined,
+                  ) => (
+                    <Avatar key={index} className="border-2 border-background">
+                      <AvatarImage
+                        src={curator['Curator Profile Image']}
+                        alt={curator['Curator Name']}
+                      />
+                      <AvatarFallback>
+                        {curator['Curator Name'].charAt(0)}
+                      </AvatarFallback>
+                    </Avatar>
+                  ),
+                )}
             </div>
           </div>
         </CardContent>
